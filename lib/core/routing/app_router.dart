@@ -3,15 +3,16 @@ import 'package:go_router/go_router.dart';
 
 import 'route_names.dart';
 import 'route_paths.dart';
-import '../../presentation/screens/home_screen.dart' as screens; // Home screen exists
+import '../../presentation/screens/home_screen.dart'
+    as screens; // Home screen exists
 
 /// AppRouter centralizes GoRouter configuration for FocusFlow.
 class AppRouter {
   AppRouter._();
 
-  static GoRouter router() {
+  static GoRouter router({String? initialLocation}) {
     return GoRouter(
-      initialLocation: RouteNames.onboarding,
+      initialLocation: initialLocation ?? RouteNames.onboarding,
       routes: <RouteBase>[
         GoRoute(
           path: RoutePaths.onboarding,
@@ -55,17 +56,15 @@ class AppRouter {
 class _OnboardingPlaceholder extends StatelessWidget {
   const _OnboardingPlaceholder();
   @override
-  Widget build(BuildContext context) => const Scaffold(
-        body: Center(child: Text('Onboarding')),
-      );
+  Widget build(BuildContext context) =>
+      const Scaffold(body: Center(child: Text('Onboarding')));
 }
 
 class _AddHabitPlaceholder extends StatelessWidget {
   const _AddHabitPlaceholder();
   @override
-  Widget build(BuildContext context) => const Scaffold(
-        body: Center(child: Text('Add Habit')),
-      );
+  Widget build(BuildContext context) =>
+      const Scaffold(body: Center(child: Text('Add Habit')));
 }
 
 class _HabitDetailPlaceholder extends StatelessWidget {
@@ -73,25 +72,21 @@ class _HabitDetailPlaceholder extends StatelessWidget {
   const _HabitDetailPlaceholder({required this.id});
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text('Habit Detail')),
-        body: Center(child: Text('Habit ID: $id')),
-      );
+    appBar: AppBar(title: const Text('Habit Detail')),
+    body: Center(child: Text('Habit ID: $id')),
+  );
 }
 
 class _StatisticsPlaceholder extends StatelessWidget {
   const _StatisticsPlaceholder();
   @override
-  Widget build(BuildContext context) => const Scaffold(
-        body: Center(child: Text('Statistics')),
-      );
+  Widget build(BuildContext context) =>
+      const Scaffold(body: Center(child: Text('Statistics')));
 }
 
 class _SettingsPlaceholder extends StatelessWidget {
   const _SettingsPlaceholder();
   @override
-  Widget build(BuildContext context) => const Scaffold(
-        body: Center(child: Text('Settings')),
-      );
+  Widget build(BuildContext context) =>
+      const Scaffold(body: Center(child: Text('Settings')));
 }
-
-

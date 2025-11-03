@@ -6,13 +6,19 @@ import 'core/theme/app_theme.dart';
 import 'core/theme/theme_manager.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/route_names.dart';
+import 'presentation/screens/onboarding/onboarding_manager.dart';
 
 final ThemeManager themeManager = ThemeManager();
+String? _initialLocation;
 
 Future<void> main() async {
   // Entry point for FocusFlow.
   WidgetsFlutterBinding.ensureInitialized();
   await themeManager.loadThemePreference();
+  // Determine start route based on first launch preference
+  final OnboardingManager onboardingManager = OnboardingManager();
+  final bool firstLaunch = await onboardingManager.checkFirstLaunch();
+  _initialLocation = firstLaunch ? RouteNames.onboarding : RouteNames.home;
   runApp(const FocusFlowApp());
 }
 
@@ -37,7 +43,7 @@ class FocusFlowApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: mode,
-          routerConfig: AppRouter.router(),
+          routerConfig: AppRouter.router(initialLocation: _initialLocation),
         );
 
         // Only wrap with MultiBlocProvider when providers are present.
